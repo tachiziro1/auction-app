@@ -1,3 +1,12 @@
+@if (count($errors)>0)
+    <p><b>{{count($errors)}}件のエラーがあります</b></p>
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+        @endforeach
+    </ul>
+@endif
+
 <h1>商品登録フォーム</h1>
 <form action="/items" method="post">
     @csrf
@@ -25,6 +34,6 @@
         商品画像URL：<br>
         <input type="text" name="image_url" value="{{ old('image_url') }}">
     </p>
-
     <input type="submit" value="登録">
 </form>
+<a href="/">戻る</a>

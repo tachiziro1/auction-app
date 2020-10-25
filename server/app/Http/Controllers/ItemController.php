@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Item;
+use App\Http\Requests\ItemRequest;
 
 class ItemController extends Controller
 {
@@ -11,11 +12,10 @@ class ItemController extends Controller
         $items = Item::all();
         return view('items.index',['items'=> $items]);
     }
-    public function create(){      
-        return view('items.create');  
-    }   
-
-    public function store(Request $request)    {
+    public function create(){
+        return view('items.create');
+    }
+    public function store(ItemRequest $request){
         // インスタンスの作成
         $item = new Item;
         // 値の用意
@@ -31,7 +31,6 @@ class ItemController extends Controller
         // 登録したらindexに戻る
         return redirect('/items');
     }  
-        
     public function show($id){
         $item = Item::find($id);
         return view('items.show',['item'=>$item]);
@@ -40,7 +39,7 @@ class ItemController extends Controller
         $item = Item::find($id);
         return view('items.edit', ['item' => $item]);
     }
-    public function update(Request $request, $id) {
+    public function update(ItemRequest $request, $id) {
         // ここはidで探して持ってくる以外はstoreと同じ        
         $item = Item::find($id);
          // 値の用        
@@ -61,5 +60,4 @@ class ItemController extends Controller
         $item->delete();
         return redirect('/items');
     }
-
 }

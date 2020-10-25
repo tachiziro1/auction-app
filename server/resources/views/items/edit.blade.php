@@ -1,3 +1,11 @@
+@if (count($errors)>0)
+    <p><b>{{count($errors)}}件のエラーがあります</b></p>
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+        @endforeach
+    </ul>
+@endif
 <h1>商品更新フォーム</h1>
 <!--更新先はitemsのidにしないと増える php artisan rote:listで確認①-->
 <form action="/items/{{ $item->id }}" method="post">

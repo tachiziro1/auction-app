@@ -6,4 +6,4 @@
 
 @endforeach
 </ul>
-<a href="/items/create">出品する</a>
+<a href="/create">出品する</a>
